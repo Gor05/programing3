@@ -1,6 +1,7 @@
-class Grass extends LivingCreature {
-    constructor(x, y) {
-        super(x,y)
+ class LivingCreature{
+ constructor(x, y) {
+        this.x = x;
+        this.y = y;
         this.multiply = 0;
 
         this.directions = [
@@ -14,8 +15,6 @@ class Grass extends LivingCreature {
             [this.x + 1, this.y + 1],
         ]
     }
-
-
     chooseCell(char) {
         var found = [];
 
@@ -33,25 +32,4 @@ class Grass extends LivingCreature {
         return found;
     }
 
-
-      mul(){
-            this.multiply++
-             var emptyCell  =  this.chooseCell(0);
-             var newCell  =    random(emptyCell);
-
-                   if(newCell && this.multiply >= 10){
-                          
-                            var newX = newCell[0];
-                            var newY = newCell[1];
-
-                                matrix[newY][newX] = 1;
-
-                                var gr = new Grass(newX,newY); 
-
-                                grassArr.push(gr);
-
-                                this.multiply = 0;
-                         
-                   }
-      }
-}
+ }
