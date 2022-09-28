@@ -1,13 +1,15 @@
-var express = require("express");
+var express = require('express');
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+var fs = require("fs");
 
-app.get("/", function(req, res){
-   res.send("Hello world");
-});
+app.use(express.static("."));
 
-app.listen(3000, function(){
-   console.log("Example is running on port 3000");
+app.get('/', function (req, res) {
+    res.redirect('index.html');
 });
+server.listen(3000);
 function matrixGenerator(matrixSize, grassCount, grEatCount, predatorCount, eathelperCount, terroristCount) {
     let matrix = [];
 
@@ -80,7 +82,7 @@ function matrixGenerator(matrixSize, grassCount, grEatCount, predatorCount, eath
 let matrix = matrixGenerator(25, 15, 20, 25, 10,17);
 console.log(matrix);
 
-import.sockets.emit('send matrix',matrix)
+io.sockets.emit('send matrix',matrix)
 
  grassArr = []
  grassEaterArr = []
@@ -125,35 +127,38 @@ import.sockets.emit('send matrix',matrix)
     }
   }
   io.sockets.emit('send matrix',matrix)
-  function game(){
-  for (var i in grassArr) {
-    grassArr[i].mul()
-}
 
-for (let j in grassEaterArr) {
-    grassEaterArr[j].mul()
-    grassEaterArr[j].eat()
-}
 
-for (let j in predatorArr) {
-    predatorArr[j].mul()
-    predatorArr[j].eat()
-}
-for (let j in eathelperArr) {
-    eathelperArr[j].mul()
-    eathelperArr[j].eat()
-}
-for (let j in terroristArr) {
-    terroristArr[j].mul()
-    terroristArr[j].eat()
-}
-io.sockets.emit('send matrix',matrix)
-}
  }
 
-setInterval(game(),200)
+ function game(){
+    for (var i in grassArr) {
+      grassArr[i].mul()
+  }
+  
+  for (let j in grassEaterArr) {
+      grassEaterArr[j].mul()
+      grassEaterArr[j].eat()
+  }
+  
+  for (let j in predatorArr) {    
+      predatorArr[j].mul()
+      predatorArr[j].eat()    
+  }   
+  for (let j in eathelperArr) {
+      eathelperArr[j].mul()   
+      eathelperArr[j].eat()   
+  }
+  for (let j in terroristArr) {   
+      terroristArr[j].mul()
+      terroristArr[j].eat()
+  }
+  io.sockets.emit('send matrix',matrix)   
+  }
+
+setInterval(game,200) 
 
 
 io.on('connection', function (){
-    createObject(matrix)
+    createObject(matrix)    
 })

@@ -6,7 +6,6 @@ var side = 35;
 
 
 function setup() {
-    frameRate(10)
     createCanvas(25 * side,25 * side);
 
    
@@ -41,5 +40,4 @@ setInterval(
      socket.on('send matrix',nkarel )   
     },1000
 )
-
 
