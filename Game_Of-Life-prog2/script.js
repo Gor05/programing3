@@ -32,12 +32,25 @@ function nkarel(matrix) {
             rect(x * side, y * side, side, side)
         }
     }
-
+    socket.on('send matrix', nkarel)
     
 }
-setInterval(
-    function () {
-     socket.on('send matrix',nkarel )   
-    },1000
-)
+function kill() {
+    socket.emit("kill")
+}
+function addGrass() {
+    socket.emit("add grass")
+}
+function addGrassEater() {
+    socket.emit("add grassEater")
+}
+function addPredator() {
+    socket.emit("add predator")
+}
+function addEathelper() {
+    socket.emit("add eathelper")
+}
+function addTerrorist() {
+    socket.emit("add terrorist")
+}
 
