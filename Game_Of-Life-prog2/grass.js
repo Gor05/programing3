@@ -5,16 +5,7 @@ module.exports = class Grass extends LivingCreature {
         super(x,y)
         this.multiply = 0;
 
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1    ],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y    ],
-            [this.x + 1, this.y    ],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1    ],
-            [this.x + 1, this.y + 1],
-        ]
+        
     }
 
 
@@ -39,7 +30,7 @@ module.exports = class Grass extends LivingCreature {
       mul(){
             this.multiply++
              var emptyCell  =  this.chooseCell(0);
-             var newCell  =    random(emptyCell);
+             var newCell  =    emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
                    if(newCell && this.multiply >= 10){
                           

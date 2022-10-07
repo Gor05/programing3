@@ -40,10 +40,11 @@ module.exports = class Terrorist extends LivingCreature {
 
     mul() {
         this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var emptyCell = this.chooseCell(0);
+        var newCell  =    emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
-        console.log(emptyCells);
+
+        
         if (newCell && this.multiply >= 6) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -58,7 +59,7 @@ module.exports = class Terrorist extends LivingCreature {
     move() {
         this.energy--
         var emptyCell = this.chooseCell(0)
-        var newCell = random(emptyCell)
+        var newCell  =    emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
         if (newCell && this.energy >= 0) {
             console.log(newCell)
@@ -78,7 +79,8 @@ module.exports = class Terrorist extends LivingCreature {
 
     eat() {
         var emptyCell = this.chooseCell(4)
-        var newCell = random(emptyCell)
+        var newCell  =    emptyCell[Math.floor(Math.random() * emptyCell.length)];
+
 
         if (newCell) {
             this.energy++

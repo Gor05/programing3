@@ -10,6 +10,9 @@ function setup() {
 
    
 }
+socket.on("weather", function (data) {
+    weath = data;
+})
 
 function nkarel(matrix) {
     for (var y = 0; y < matrix.length; y++) {
@@ -32,9 +35,10 @@ function nkarel(matrix) {
             rect(x * side, y * side, side, side)
         }
     }
-    socket.on('send matrix', nkarel)
     
 }
+
+socket.on('send matrix', nkarel)
 function kill() {
     socket.emit("kill")
 }

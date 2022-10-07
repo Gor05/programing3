@@ -1,6 +1,6 @@
 let LivingCreature = require("./LivingCreature")
 
-module.exports = class eathelper extends LivingCreature {
+module.exports = class Eathelper extends LivingCreature {
     constructor(x, y) {
         super(x,y)
         this.energy = 8;
@@ -39,16 +39,17 @@ module.exports = class eathelper extends LivingCreature {
 
     mul() {
         this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var emptyCell = this.chooseCell(0);
+        var newCell  =    emptyCell[Math.floor(Math.random() * emptyCell.length)];
 
-        console.log(emptyCells);
+
+        
         if (newCell && this.multiply >= 7) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 4;
 
-            var ehelp = new eathelper(newX, newY);
+            var ehelp = new Eathelper(newX, newY);
             eathelperArr.push(ehelp);
             this.multiply = 0;
         }
@@ -56,8 +57,9 @@ module.exports = class eathelper extends LivingCreature {
  
     move() {
         this.energy--
-        var emptyCells = this.chooseCell(0)
-        var newCell = random(emptyCells);
+        var emptyCell = this.chooseCell(0)
+        var newCell  =    emptyCell[Math.floor(Math.random() * emptyCell.length)];
+
 
         if (newCell && this.energy >= 0) {
             console.log(newCell)
@@ -76,8 +78,9 @@ module.exports = class eathelper extends LivingCreature {
     }
 
     eat() {
-        var emptyCells = this.chooseCell(3)
-        var newCell = random(emptyCells);
+        var emptyCell = this.chooseCell(3)
+        var newCell  =    emptyCell[Math.floor(Math.random() * emptyCell.length)];
+
 
         if (newCell) {
             this.energy++
